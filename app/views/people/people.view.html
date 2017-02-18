@@ -1,0 +1,10 @@
+<form  ng-submit="addNewPeople(person)">
+	<input type="text" required minlength="3" placeholder="" ng-model="person">
+	<input type="submit" value="Add">
+</form>
+<div ng-if='peopleError == 1'>
+	No people registered yet
+</div>
+<div ng-repeat="person in peopleList">
+	{{ person.name }}
+</div>
