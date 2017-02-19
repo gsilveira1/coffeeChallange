@@ -2,8 +2,7 @@
 	'use strict';
 	var app =  angular.module('coffeeApp', ['ngRoute',
 											'LocalStorageModule',
-											'coffeeAppHome',
-											'coffeeAppSchedules',
+											'coffeeAppList',
 											'coffeeAppPeople']);
 		
 		app.config(['$locationProvider',
@@ -15,19 +14,15 @@
 			$locationProvider.hashPrefix('!');
 		  	
 		  	$routeProvider
-				.when('/home', {
-				    templateUrl: 'views/home/home.view.html',
-				    controller: 'HomeController'
-				})
-				.when('/schedules', {
-					templateUrl: 'views/schedules/schedules.view.html',
-					controller: 'SchedulesController'
+				.when('/list', {
+				    templateUrl: 'views/list/list.view.html',
+				    controller: 'ListController'
 				})
 				.when('/people', {
 				    templateUrl: 'views/people/people.view.html',
 				    controller: 'PeopleController'
 				})
-				.otherwise({redirectTo: '/home'});
+				.otherwise({redirectTo: '/list'});
 		}]);
 }());
 
