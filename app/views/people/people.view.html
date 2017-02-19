@@ -1,10 +1,20 @@
 <form  ng-submit="addNewPeople(person)">
-	<input type="text" required minlength="3" placeholder="" ng-model="person">
+	<input type="text" required minlength="3" placeholder="Enter with a name..." ng-model="person">
 	<input type="submit" value="Add">
 </form>
-<div ng-if='peopleError == 1'>
-	No people registered yet
-</div>
-<div ng-repeat="person in peopleList">
-	{{ person.name }}
-</div>
+<table>
+	<tr>
+		<th>Name</th>
+		<th></th>
+	</tr>
+	<tr ng-show="!peopleList.length">
+		<td><span>No people registered yet</span></td>
+	</tr>
+	<tr ng-show="peopleDuplicated">
+		<td><span>This record already exists</span></td>
+	</tr>
+	<tr ng-if="peopleList" ng-repeat="person in peopleList">
+		<td>{{ person.name }}</td>
+		<td><a href="#!/people" ng-click="excludePeople($index,$event)">exclude</a></td>
+	</tr>
+</table>

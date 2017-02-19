@@ -11,19 +11,15 @@
 					if(collection == null){
 						return false;				
 					}else{
-						console.log(collection);
 						return collection;
 					}
 				};
 
 				var setPeople = function(name){
-					var content = { 
-						'id':  1,
-						'name': name 
-					};
+					var content = { 'name': name };
 
-					var peopleCollection = JSON.parse(localStorageService.get(key));
-					
+					var peopleCollection = (getPeople()) ? getPeople() : null;
+					  
 					if(peopleCollection == null){
 						peopleCollection = [];				
 					}else{
@@ -36,20 +32,27 @@
 					}
 
 					if(error > 0 ){
-						return 'false';
+						return false;
 					}else{
 						peopleCollection.push(content);
 						localStorageService.set(key, JSON.stringify(peopleCollection,null,0));
-						return JSON.parse(localStorageService.get(key));
+						return getPeople();
 					}
 				};
+
+				var excludePeople = function(index){
+					var collection = getPeople();
+					collection.splice(index, 1);
+					localStorageService.set(key, JSON.stringify(collection,null,0));
+					return true;
+				}
 
   			}
 
 			return {
 				setPeople: setPeople,
 				getPeople: getPeople,
-				//excludePeople: excludePeople
+				excludePeople: excludePeople
 			};
 		};
 

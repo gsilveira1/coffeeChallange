@@ -1,11 +1,11 @@
 (function(){
 	'use strict';
 	
-	var app = angular.module('coffeeAppSchedules', ['ngRoute']);
+	var app = angular.module('coffeeAppSchedules',[]);
 	
 	var SchedulesController = function() {
-			this.name = 'asd';
-		};
+		
+	};
 
-		app.controller('SchedulesController', SchedulesController);
+	app.controller('SchedulesController', SchedulesController);
 }());
