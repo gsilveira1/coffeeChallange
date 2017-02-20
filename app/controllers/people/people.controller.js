@@ -3,7 +3,7 @@
 
 	var app = angular.module('coffeeAppPeople', []);
 	
-	var PeopleController =  function($scope, $route,PeopleService, ListService) {
+	var PeopleController =  function($scope, $route, $location, PeopleService, ListService) {
 			var peopleList =  PeopleService.getPeople();
 		
 			if(angular.isArray(peopleList)){
@@ -31,10 +31,15 @@
 				var people = PeopleService.getPeople();
 				var list = ListService.list(people);
 				$scope.list = list;
-				//$route.reload();
+			}
+
+			$scope.saveList = function(){
+				if(ListService.saveList($scope.list)){
+					$location.path('/list');
+				}
 			}
 
 		};
 
-		app.controller('PeopleController', ['$scope', '$route', 'PeopleService', 'ListService',  PeopleController]);
+		app.controller('PeopleController', ['$scope', '$route', '$location', 'PeopleService', 'ListService',  PeopleController]);
 }());

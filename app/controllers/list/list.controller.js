@@ -3,9 +3,8 @@
 	
 	var app = angular.module('coffeeAppList',[]);
 	
-	var ListController = function($scope, ListService) {
-		//$scope.list = ListService.populateList;
-		//$scope.random = ListService.list;
+	var ListController = function($scope,  $location, ListService) {
+		$scope.list = ListService.getList();
 	};
-	app.controller('ListController',['$scope', 'ListService', ListController]);
+	app.controller('ListController',['$scope', '$location', 'ListService', ListController]);
 }());
