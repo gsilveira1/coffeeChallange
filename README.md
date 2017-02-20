@@ -1,8 +1,8 @@
-#coffeeChallange
+#coffeeChallenge
 
 Para rodar este projeto:
 
-- Clonar o repositório. https://github.com/gsilveira1/coffeeChallange.git
+- Clonar o repositório. https://github.com/gsilveira1/coffeeChallenge.git
 
 - No diretório principal do projeto rodar 'npm install' para a instalação das dependencias e dos componentes.
 
