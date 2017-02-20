@@ -1,0 +1,37 @@
+<div class='people'>
+	<h1>ListaDoCafé</h1>
+	<p class="lead">Use este app para gerar a lista dos encarregados do café da semana.</p>
+  	<form  ng-submit="addNewPeople(person)">
+		<input type="text" required minlength="3" maxlength="25" placeholder="Digite um nome..." ng-model="person" class="form-control">
+		<input type="submit" value="Add" class="btn btn-primary btn-lg">
+		<div ng-show="peopleList.length==0" class="messages">
+			<span class="btn btn-info">Nenhuma pessoa cadastrada ainda</span>
+		</div>
+		<div ng-show="peopleDuplicated" class="messages">
+			<span class="btn btn-danger">Esse registro já existe</span>
+		</div>
+	</form>
+	<div class="titles clearfix">
+		<h4 ng-show="peopleList">Pessoas  <span class="sort-list btn btn-primary btn-lg" ng-show="peopleList.length>=2" ng-click="sortList()">Listar</span></h4>
+		<h4 ng-show="list">Lista</h4>	
+	</div>
+	<ul class="list-group" >
+	  <li ng-if="peopleList" ng-repeat="person in peopleList" class="list-group-item">
+	    <span class="badge" ng-click="excludePeople($index,$event)">remover</span>
+	    {{ person.name }}
+	  </li>
+	</ul>
+	<div class="list-days">
+		<div class="panel panel-primary" ng-repeat="day in list">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{ day[0].name }}-Feira</h3>
+			</div>
+			<div class="panel-body">
+				Manhã: {{ day[1].name }}
+				<br />
+				Tarde: {{ day[2].name }}
+			</div>
+		</div>
+		<h4 ng-show="list"><a ng-click="saveList()">Salvar e ver em outra página</a></h4>	
+	</div>
+</div>
