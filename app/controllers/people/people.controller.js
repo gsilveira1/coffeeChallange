@@ -3,7 +3,7 @@
 
 	var app = angular.module('coffeeAppPeople', []);
 	
-	var PeopleController =  function($scope, PeopleService) {
+	var PeopleController =  function($scope, $route,PeopleService, ListService) {
 			var peopleList =  PeopleService.getPeople();
 		
 			if(angular.isArray(peopleList)){
@@ -23,11 +23,18 @@
 
 			$scope.excludePeople = function($index, $event){
 				if(PeopleService.excludePeople($index)){
-					angular.element($event.currentTarget).parent().parent().remove();
+					$route.reload();
 				}
 			};
-		
+
+			$scope.sortList = function(){
+				var people = PeopleService.getPeople();
+				var list = ListService.list(people);
+				$scope.list = list;
+				//$route.reload();
+			}
+
 		};
 
-		app.controller('PeopleController', ['$scope', 'PeopleService', PeopleController]);
+		app.controller('PeopleController', ['$scope', '$route', 'PeopleService', 'ListService',  PeopleController]);
 }());

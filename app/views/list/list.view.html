@@ -1,1 +1,13 @@
-<p>{{random}} | {{list}}</p>
+<a href="#!/people">Voltar para página principal.</a>
+<div class="list-days">
+	<div class="panel panel-primary" ng-repeat="day in list">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ day[0].name }}-Feira</h3>
+		</div>
+		<div class="panel-body">
+			Manhã: {{ day[1].name }}
+			<br />
+			Tarde: {{ day[2].name }}
+		</div>
+	</div>
+</div>

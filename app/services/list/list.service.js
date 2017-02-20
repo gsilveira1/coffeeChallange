@@ -11,6 +11,7 @@
 		};
 
 		var getList = function(min, max, current){
+			var listReturn;
 			if (current===undefined) {
 				current = getRandom(min,max);
 			}
@@ -18,7 +19,9 @@
 				list.push(current);
 			}
 			if(list.length==max) {
-		        return false;
+				listReturn = list;
+				list = [];
+		        return listReturn;
 		    }
 		    if(list.indexOf(current)==-1) {
 		    	list.push(current);
@@ -27,26 +30,29 @@
 		    return getList(min,max,getRandom(min,max));
 		};
 		
-		var populateList = function () {
-			var people = PeopleService.getPeople(); 
+		var populateList = function (people) {
+			var list = getList(0,PeopleService.getPeople().length);
 			var index = 0;
-			var peopleList = [];
-
-			for(var i=0; i < 10; i++){
+			var peopleList = { 'Monday': [{'name': 'Segunda'}], 'Tuesday': [{'name': 'Terça'}], 'Wednesday': [{'name': 'Quarta'}], 'Thursday': [{'name': 'Quinta'}], 'Friday': [{'name': 'Sexta'}]};
+			for(var key in peopleList){
 				if(index == people.length){
 					index = 0;
 				}
-				peopleList[i] = people[list[index]];
-				index++;
+			  	peopleList[key].push(people[list[index]]);
+			  	if(index+1 > people.length-1){
+			  		index = 0;
+			  		peopleList[key].push(people[list[index]]);
+			  		index= index+1;
+			  	}else{
+					peopleList[key].push(people[list[index+1]]);
+					index = index + 2;
+			  	}
 			}
 			return peopleList;
 		};
 
-		getList(0,PeopleService.getPeople().length);
-
 		return {
-			list: list,
-			populateList: populateList()
+			list: populateList
 		};
 	};
 

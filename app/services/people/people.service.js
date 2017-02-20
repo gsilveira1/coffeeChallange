@@ -15,29 +15,30 @@
 					}
 				};
 
-				var setPeople = function(name){
-					var content = { 'name': name };
-
-					var peopleCollection = (getPeople()) ? getPeople() : null;
-					  
-					if(peopleCollection == null){
-						peopleCollection = [];				
-					}else{
-						for(var i = 0; i < peopleCollection.length; i++ ) {
-							var error = 0;
-							if(peopleCollection[i].name == name){
-								error++;
-							}
+				var isEquals = function(peopleCollection,name){
+					for(var i in peopleCollection) {
+						var error = 0;
+						if(peopleCollection[i].name === name){
+							console.log(peopleCollection[i].name === name);
+							return true;
 						}
 					}
+				};
 
-					if(error > 0 ){
+				var setPeople = function(name){
+					var content = { 'name': name };
+					var peopleCollection = (getPeople()) ? getPeople() : null;
+					if(peopleCollection == null){
+						peopleCollection = [];				
+					}
+					if(isEquals(peopleCollection,name)){
 						return false;
 					}else{
 						peopleCollection.push(content);
 						localStorageService.set(key, JSON.stringify(peopleCollection,null,0));
 						return getPeople();
 					}
+					
 				};
 
 				var excludePeople = function(index){

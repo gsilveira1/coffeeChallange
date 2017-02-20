@@ -22,7 +22,7 @@
 				    templateUrl: 'views/people/people.view.html',
 				    controller: 'PeopleController'
 				})
-				.otherwise({redirectTo: '/list'});
+				.otherwise({redirectTo: '/people'});
 		}]);
 }());
 
